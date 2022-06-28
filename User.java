@@ -60,9 +60,7 @@ AtomicInteger sum= new AtomicInteger();
         System.out.println();
         System.out.println("Список сотрудников старше 30 лет ");
         System.out.println();
-
-        list.stream()
-                .forEach(x-> sum.addAndGet(x.age));
+        
         list.stream()
                 .filter(p->p.age>30)
                 .forEach(s-> System.out.println(s));
