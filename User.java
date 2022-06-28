@@ -52,25 +52,201 @@ public class User {
         return (double) sum / count;
     }
 
-    public static List moreThan30(List<User> list) {
-        List<User> list1 =
+    public static List<User> moreThan30(List<User> list) {
+        List<User> moreThan30list =
                 list.stream()
                         .filter(p -> p.age > 30)
                         .collect(Collectors.toList());
-        return list1;
+        return moreThan30list;
     }
 
-    public static List sortedByAge(List<User> list) {
+    public static List<User> sortedByAge(List<User> list) {
         List<User> sortedByAge= list.stream()
                 .sorted(Comparator.comparingInt(User::getAge))
                 .collect(Collectors.toList());
         return sortedByAge;
     }
 
-    public static List sortedByDate(List<User>list){
+    public static List<User> sortedByDate(List<User>list){
         List<User> sortedByDate= list.stream()
                 .sorted(Comparator.comparing(User::getDate))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList());import java.time.LocalDate;
+2
+import java.util.ArrayList;
+3
+import java.util.Comparator;
+4
+import java.util.List;
+5
+import java.util.stream.Collectors;
+6
+import java.util.stream.Stream;
+7
+​
+8
+public class User {
+9
+    String name;
+10
+    int age;
+11
+    LocalDate date;
+12
+​
+13
+    public User(String name, int age, LocalDate date) {
+14
+        this.name = name;
+15
+        this.age = age;
+16
+        this.date = date;
+17
+    }
+18
+​
+19
+    public int getAge() {
+20
+        return age;
+21
+    }
+22
+​
+23
+    public LocalDate getDate() {
+24
+        return date;
+25
+    }
+26
+​
+27
+    @Override
+28
+    public String toString() {
+29
+        return "User{" +
+30
+                "name='" + name + '\'' +
+31
+                ", age=" + age +
+32
+                ", date=" + date +
+33
+                '}';
+34
+    }
+35
+​
+36
+    public static int ageSum(List<User> list) {
+37
+        Stream<User> userStream = list.stream();
+38
+        int sum = userStream.reduce(0,
+39
+                (x, y) -> {
+40
+                    return x + y.getAge();import java.time.LocalDate;
+2
+import java.util.ArrayList;
+3
+import java.util.Comparator;
+4
+import java.util.List;
+5
+import java.util.stream.Collectors;
+6
+import java.util.stream.Stream;
+7
+​
+8
+public class User {
+9
+    String name;
+10
+    int age;
+11
+    LocalDate date;
+12
+​
+13
+    public User(String name, int age, LocalDate date) {
+14
+        this.name = name;
+15
+        this.age = age;
+16
+        this.date = date;
+17
+    }
+18
+​
+19
+    public int getAge() {
+20
+        return age;
+21
+    }
+22
+​
+23
+    public LocalDate getDate() {
+24
+        return date;
+25
+    }
+26
+​
+27
+    @Override
+28
+    public String toString() {
+29
+        return "User{" +
+30
+                "name='" + name + '\'' +
+31
+                ", age=" + age +
+32
+                ", date=" + date +
+33
+                '}';
+34
+    }
+35
+​
+36
+    public static int ageSum(List<User> list) {
+37
+        Stream<User> userStream = list.stream();
+38
+        int sum = userStream.reduce(0,
+39
+                (x, y) -> {
+40
+                    return x + y.getAge();
+41
+                }, (x, y) -> x + y);
+42
+        return sum;
+43
+    }
+44
+​
+45
+    public static double avgAge(List<User> list) {
+41
+                }, (x, y) -> x + y);
+42
+        return sum;
+43
+    }
+44
+​
+45
+    public static double avgAge(List<User> list) {
 
         return sortedByDate;
     }
